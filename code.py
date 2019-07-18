@@ -8,6 +8,9 @@ BCH_LOCATION = ['BCH', 'USD']
 ETH_LOCATION = ['ETH', 'USD']
 BTC_LOCATION = ['BTC', 'USD']
 
+def text_transform(val):
+    return "$%d" % val
+
 # the current working directory (where this file is)
 cwd = ("/"+__file__).rsplit('/', 1)[0]
 pyportal = PyPortal(url=DATA_SOURCE,
@@ -21,9 +24,7 @@ pyportal = PyPortal(url=DATA_SOURCE,
                     text_color=(0x00,  # BCH
                                 0x00,  # ETH
                                 0x00), # BTC
-                    #text_wrap=(35, # characters to wrap for quote
-                               #0), # no wrap for author
-                    #text_maxlen=(180, 30), # max text size for quote & author
+                    text_transform=(text_transform, text_transform, text_transform),
                    )
 
 # speed up projects with lots of text by preloading the font!
